@@ -1,0 +1,1 @@
+# WindowsRegistry.Serializer
