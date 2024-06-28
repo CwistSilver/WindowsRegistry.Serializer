@@ -12,14 +12,14 @@ public static class RegistrySerializer
     public static readonly IPropertyCacheInfoRepository _propertyCacheInfoRepository = new PropertyCacheInfoRepository();
 
     #region Serialize
-    public static void Serialize<T>(string registryKey, T objectToSerialize, RegistrySerializerOptions? options = null)
+    public static void Serialize<TValue>(string registryKey, TValue objectToSerialize, RegistrySerializerOptions? options = null)
     {
         if (objectToSerialize is null)
             throw new ArgumentNullException(nameof(objectToSerialize), "The object to serialize cannot be null. Please ensure you provide a valid object to serialize.");
 
         options ??= RegistrySerializerOptions.Default;
 
-        Type type = typeof(T);
+        Type type = typeof(TValue);
 
         Serialize(registryKey, objectToSerialize, type, options);
     }
@@ -74,7 +74,7 @@ public static class RegistrySerializer
         WriteToRegistry(keyValuePairs, registryKey, options);
     }
 
-    private static void WriteToRegistry(Dictionary<string, object?> keyValuePairs, string registryKey, RegistrySerializerOptions options)
+    private static void WriteToRegistry(IDictionary<string, object?> keyValuePairs, string registryKey, RegistrySerializerOptions options)
     {
         foreach (var pair in keyValuePairs)
         {
@@ -96,16 +96,16 @@ public static class RegistrySerializer
 
     #region Deserialize
 
-    public static T? Deserialize<T>(string path, RegistrySerializerOptions? options = null)
+    public static TValue? Deserialize<TValue>(string path, RegistrySerializerOptions? options = null)
     {
         options ??= RegistrySerializerOptions.Default;
 
-        Type type = typeof(T);
+        Type type = typeof(TValue);
 
         if (IsCollectionType(type))
-            return (T?)DeserializeCollection(path, type, options);
+            return (TValue?)DeserializeCollection(path, type, options);
 
-        T? deserializedObject = (T?)DeserializeSingleObject(path, type, options);
+        TValue? deserializedObject = (TValue?)DeserializeSingleObject(path, type, options);
         if (deserializedObject is null)
             return default;
 
@@ -164,7 +164,7 @@ public static class RegistrySerializer
         return obj;
     }
 
-    public static object? DeserializeSingleObject(string path, Type type, RegistrySerializerOptions options)
+    private static object? DeserializeSingleObject(string path, Type type, RegistrySerializerOptions options)
     {
         uint successfulyDeserializedProperties = 0;
 
@@ -215,7 +215,7 @@ public static class RegistrySerializer
         return obj;
     }
 
-    public static object? DeserializeCollection(string rootDirectoryPath, Type collectionType, RegistrySerializerOptions options)
+    private static object? DeserializeCollection(string rootDirectoryPath, Type collectionType, RegistrySerializerOptions options)
     {
         Type itemType = GetCollectionItemType(collectionType);
         var subKeys = _registryService.GetSubKeyNames(rootDirectoryPath);

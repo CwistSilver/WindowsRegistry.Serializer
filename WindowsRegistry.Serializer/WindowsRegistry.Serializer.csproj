@@ -5,7 +5,34 @@
 		<LangVersion>12</LangVersion>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
+		<PackageId>WindowsRegistry.Serializer</PackageId>
+		<Title>WindowsRegistry.Serializer</Title>
+		<Description>WindowsRegistry.Serializer is a .NET Standard 2.0 library for serializing and deserializing Windows Registry entries using defined classes similar to JsonSerializer.</Description>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Company>CwistSilver</Company>
+		<Authors>CwistSilver</Authors>
+		<RepositoryUrl>https://github.com/CwistSilver/WindowsRegistry.Serializer</RepositoryUrl>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+		<PackageIcon>icon.png</PackageIcon>
+		<RepositoryType>git</RepositoryType>
+		<PackageTags>Windows;Registry;Serialize;Deserialize;Serializer</PackageTags>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\LICENSE.txt">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Include="..\icon.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Include="..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
 
 	<ItemGroup>
 	  <PackageReference Include="Microsoft.Win32.Registry" Version="5.0.0" />
