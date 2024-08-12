@@ -4,7 +4,7 @@
 [![WindowsRegistry.Serializer](https://img.shields.io/nuget/vpre/WindowsRegistry.Serializer.svg?cacheSeconds=3600&label=WindowsRegistry.Serializer%20nuget)](https://www.nuget.org/packages/WindowsRegistry.Serializer)
 [![NuGet](https://img.shields.io/nuget/dt/WindowsRegistry.Serializer.svg?cacheSeconds=3600&label=Downloads)](https://www.nuget.org/packages/WindowsRegistry.Serializer)
 
-**'WindowsRegistry.Serializer'** is a .NET Standard 2.0 library for serializing and deserializing Windows Registry entries using defined classes similar to JsonSerializer.
+**'WindowsRegistry.Serializer'** is a .NET Standard 2.1 library for serializing and deserializing Windows Registry entries using defined classes similar to JsonSerializer.
 
 ## Features
 
